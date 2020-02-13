@@ -1,0 +1,17 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = wuwe1
+	email = wu_we1@outlook.com
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+[http]
+	sslVerify = false
+[hub]
+	protocol = https

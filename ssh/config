@@ -1,0 +1,11 @@
+Host ali
+    User root
+    HostName 47.94.250.88
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
+
+Host ali_fr
+    User root
+    HostName 47.103.23.11
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
