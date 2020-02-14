@@ -1,15 +1,12 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'pangloss/vim-javascript'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
-
-colorscheme gruvbox
-set background=dark
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -32,16 +29,80 @@ nmap <leader>w :w!<cr>
 
 inoremap jj <Esc>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Turn on the Wild menu
+set wildmenu
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+" Add a bit extra margin to the left
+set foldcolumn=1
+
 " Disable audible bell because it's annoying.
 set noerrorbells visualbell t_vb=
 
+" Highlight search results
+set hlsearch
+
+" Ignore case when searching
+set ignorecase
+
+" swtich to case sensitive when uppercase letter appear
+set smartcase 
+
+" Makes search act like search in modern browsers
+:set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Show matching brackets when text indicator is over them
+:set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" Enable syntax highlighting
+syntax enable
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme gruvbox
+set background=dark
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"source vimrc
+map <leader>ss :source ~/.vimrc<cr>
 
 "edit ~/.vimrc
-map <leader>x :e ~/.vimrc<cr>
+map <leader>rc :e ~/.vimrc<cr>
+
+" Quickly open a buffer for scribble
+map <leader>q :e ~/buffer<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -67,32 +128,15 @@ set wrap "Wrap lines
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
+set tw=80
 
-set hlsearch
 set mouse=a
-" Add a bit extra margin to the left
-set foldcolumn=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map <Space> to / (search)
 map <space> /
-
-" default case in-sensitive
-set ignorecase
-" swtich to case sensitive when uppercase letter appear
-set smartcase 
-" do incremental searching 
-:set incsearch
-" jump to matches when entering regexp
-:set showmatch
-
-:set wrapscan
-
-" move lines up and down with SHIFT+k/j
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -129,34 +173,19 @@ map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
-map 0 ^
+" move lines up and down with SHIFT+k/j
+nnoremap <S-j> :m .+1<CR>==
+nnoremap <S-k> :m .-2<CR>==
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-
-
-
-set showcmd
-
-let NERDTreeShowHidden=1
-
-
-map <leader>ss :source ~/.vimrc<cr>
-
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Nerd Tree
+let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=35
 let g:NERDTreeWinPos = "right"
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -176,5 +205,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git'
 let g:ctrlp_working_path_mode = '0'
 
 
-" Airline
-let g:airline#extensions#tabline#buffer_nr_show=1
+" lightline
+set laststatus=2
+set noshowmode
+
