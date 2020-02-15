@@ -2,7 +2,9 @@
 
 - link:
     ~/.bash_profile: 
+    ~/.bashrc:
     ~/.gitconfig: 
+    ~/.gitignore_global:
     ~/.ssh/config:
         path: ssh/config
         create: true
