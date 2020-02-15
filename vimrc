@@ -130,8 +130,6 @@ set wrap "Wrap lines
 set lbr
 set tw=80
 
-set mouse=a
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

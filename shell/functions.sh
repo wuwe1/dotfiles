@@ -21,3 +21,17 @@ path_prepend() {
     PATH="$1${PATH:+":$PATH"}"
 }
 
+bing(){
+    if [[ $# -eq 0 ]];then
+        echo "query required"
+        return 1
+    elif [[ $# -eq 1 ]];then
+        query=$1
+    else
+        IFS='+'
+        query="'$*'"
+    fi
+    curl -s "https://www.bing.com/dict/search?q=($query)" | pup '.qdef > ul text{}'
+}
+
+
