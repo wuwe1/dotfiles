@@ -31,7 +31,11 @@ bing(){
         IFS='+'
         query="'$*'"
     fi
-    curl -s "https://www.bing.com/dict/search?q=($query)" | pup '.qdef > ul text{}'
+    curl -s "https://cn.bing.com/dict/($query)?mkt=zh-CN&setlang=ZH" | pup '.qdef > ul text{}'
 }
 
+invest_rise(){
+    symbol="$(node /Users/weiwu/workspace/learn/invest/js/index.js)"
+    curl "https://api-aws.huobi.pro/market/history/kline?period=15min&size=2&symbol=$symbol"
+}
 

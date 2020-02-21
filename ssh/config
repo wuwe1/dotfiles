@@ -9,3 +9,8 @@ Host ali_fr
     HostName 47.103.23.11
     Port 22
     IdentityFile ~/.ssh/id_ed25519
+
+Host bw1
+    User root
+    HostName 45.78.13.151
+    Port 28141
