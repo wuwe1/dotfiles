@@ -48,5 +48,5 @@ history 1 | awk '{$1="";print substr($0,2)}' | sort | uniq -c | sort -n | tail -
 # Short cut
 alias zshconfig="vim ~/.zshrc"
 alias v="vim"
-
+alias p="proxychains4"
 

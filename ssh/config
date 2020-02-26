@@ -14,3 +14,8 @@ Host bw1
     User root
     HostName 45.78.13.151
     Port 28141
+
+Host vultr
+    User root
+    HostName 207.246.104.141
+    Port 22
